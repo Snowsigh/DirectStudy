@@ -1,12 +1,107 @@
 ﻿// Stack.cpp : 이 파일에는 'main' 함수가 포함됩니다. 거기서 프로그램 실행이 시작되고 종료됩니다.
 //
-
 #include <iostream>
+#define Max_Size 3
+
+int IArr[Max_Size];
+int ITop;
+int IValue;
+int IChoise;
+bool Exit;
+
+
+bool Is_Full();
+bool Is_Empty();
+void Top();
+void Push();
+void Pop();
+void Create();
 
 int main()
 {
-    std::cout << "Hello World!\n";
+	Create();
+
+	while (!Exit)
+	{
+		std::cout << "1.Push 2. Pop 3. Top 4. Exit : " << "\n";
+		std::cin >> IChoise;
+		switch (IChoise)
+		{
+			case 1:
+			{
+				Push();
+			} break;
+			case 2: {
+				Pop();
+			}break;
+			case 3: {
+				Top();
+			}break;
+			default: 
+			{
+				Exit = true;
+			}break;
+		}
+	}
+	
 }
+void Create()
+{
+	memset(IArr, 0, sizeof(int) * Max_Size);
+	ITop = 0;
+	Exit = false;
+}
+void Push()
+{
+	if (!Is_Full())
+	{
+		std::cin >> IValue;
+		IArr[ITop] = IValue;
+		ITop++;
+		system("cls");
+	}
+	
+}
+void Pop()
+{
+	system("cls");
+	if (!Is_Empty())
+	{
+		ITop--;
+		std::cout << IArr[ITop] << "  Out!\n";
+		IArr[ITop] = -1;
+
+	}
+}
+void Top()
+{
+	system("cls");
+	std::cout << IArr[ITop-1] << " ";
+	std::cout << "\n";
+
+}
+bool Is_Full()
+{
+	if (ITop == Max_Size)
+	{
+		std::cout << "Full!\n";
+		return true;
+	}
+	else return false;
+}
+bool Is_Empty()
+{
+	if (ITop == 0) 
+	{
+		system("cls");
+		std::cout << "Empty!\n";
+		return true;
+	}
+	else return false;
+}
+
+
+
 
 // 프로그램 실행: <Ctrl+F5> 또는 [디버그] > [디버깅하지 않고 시작] 메뉴
 // 프로그램 디버그: <F5> 키 또는 [디버그] > [디버깅 시작] 메뉴
