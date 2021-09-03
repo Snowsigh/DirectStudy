@@ -11,10 +11,15 @@ class LinkedList
 {
 public:
 	Node* n_Head;
+	int Hum;
+	int Select = 3;
+
 
 	void Add(Node* Data);
 	void Del(Node* Data);
 	void ShowData();
+	void CreateNode();
+	void SelectNode();
 	LinkedList();
 	~LinkedList();
 
@@ -49,33 +54,62 @@ void LinkedList::Del(Node* Data)
 }
 void LinkedList::ShowData()
 {
-	int i = 0;
 
-		for (Node* pNode = n_Head->nNext; pNode != pNode->nNext; pNode = pNode->nNext)
+		for (Node* pNode = n_Head->nNext; pNode != n_Head; pNode = pNode->nNext)
 		{
 			std::cout << pNode->iValue << "\n";
-			if (i > 3) break;
-			i++;
+
 		}
 	
 }
+void LinkedList::CreateNode()
+{
+	std::cout << "인원을 적어주세요 :  ";
+	std::cin >> Hum;
+	for (int i = 0; i < Hum; i++)
+	{
+		Node* A = new Node;
+		A->iValue = i+1;
+		Add(A);
+	}
+	std::cout << "\n";
+}
+void LinkedList::SelectNode()
+{
+	int i = 0;
+	for (Node* pNode = n_Head; pNode->nNext != n_Head;)
+	{
+
+			if (i == Select - 1)
+			{
+				std::cout << Select << " 번째였던" << pNode->nNext->iValue << " 이 걸렸습니다\n";
+				Del(pNode);
+				i = 0;
+
+			}
+			else
+			{
+				pNode = pNode->nNext;
+				i++;
+			}
+	
+		
+		
+		ShowData();
+	}
+}
+
+
 
 int main()
 {
-	Node* A;
 	LinkedList t;
-	for (int i = 0; i < 5; i++)
-	{
-		A = new Node;
-		A->iValue = i;
-		t.Add(A);
+	t.CreateNode();
+	t.SelectNode();
 
-	}
 	t.ShowData();
+
 	
-	t.Del(A);
-	t.ShowData();
-
 
 
 
