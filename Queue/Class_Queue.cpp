@@ -156,6 +156,6 @@ bool Logic::IsFull()
 }
 bool Logic::IsEmpty()
 {
-	if (IBack + 1 == IFront) return true;
+	if ((IFront + 1) % Max_Info == IBack) return true;
 	else return false;
 }
