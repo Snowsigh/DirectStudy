@@ -1,4 +1,5 @@
 ﻿#include <iostream>
+
 class Node
 {
 public:
@@ -66,6 +67,8 @@ void LinkedList::CreateNode()
 {
 	std::cout << "인원을 적어주세요 :  ";
 	std::cin >> Hum;
+	std::cout << "몇번째 숫자를 적어주세요 : ";
+	std::cin >> Select;
 	for (int i = 0; i < Hum; i++)
 	{
 		Node* A = new Node;
@@ -77,26 +80,44 @@ void LinkedList::CreateNode()
 void LinkedList::SelectNode()
 {
 	int i = 0;
-	for (Node* pNode = n_Head; pNode->nNext != n_Head;)
+	bool LastNode = true;
+	while (LastNode)
 	{
-
-			if (i == Select - 1)
+		for (Node* pNode = n_Head; pNode->nNext != n_Head;)
+		{
+			if (pNode == pNode->nNext->nNext)
 			{
-				std::cout << Select << " 번째였던" << pNode->nNext->iValue << " 이 걸렸습니다\n";
-				Del(pNode);
-				i = 0;
-
+				LastNode = false;
+				std::cout << "\n" << pNode->nNext->iValue << " 이 살아남았습니다\n";
+				break;
 			}
 			else
 			{
-				pNode = pNode->nNext;
-				i++;
+
+				if (i == Select - 1)
+				{
+					std::cout << Select << " 번째였던" << pNode->nNext->iValue << " 이 걸렸습니다\n\n";
+					Del(pNode);
+					i = 0;
+					if (pNode != pNode->nNext->nNext)
+					{
+						std::cout << pNode->nNext->iValue << " 부터 시작합니다.  " ;
+					}
+					std::cout << "남은 인원은 이상입니다\n" << "====================================\n";
+					ShowData();
+					std::cout  << "====================================\n";
+				}
+				else
+				{
+					pNode = pNode->nNext;
+					i++;
+				}
 			}
-	
+		}
 		
-		
-		ShowData();
+
 	}
+	
 }
 
 
@@ -106,8 +127,6 @@ int main()
 	LinkedList t;
 	t.CreateNode();
 	t.SelectNode();
-
-	t.ShowData();
 
 	
 
