@@ -17,6 +17,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "C++_SamPle", "C++_SamPle\C+
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Sorting", "Sorting\Sorting.vcxproj", "{9CE6A30D-A04D-4774-BD13-B27FBE5F687C}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CodingTest", "CodingTest\CodingTest.vcxproj", "{5588CE92-A936-4A03-BE69-A0FD7759A75A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -81,6 +83,14 @@ Global
 		{9CE6A30D-A04D-4774-BD13-B27FBE5F687C}.Release|x64.Build.0 = Release|x64
 		{9CE6A30D-A04D-4774-BD13-B27FBE5F687C}.Release|x86.ActiveCfg = Release|Win32
 		{9CE6A30D-A04D-4774-BD13-B27FBE5F687C}.Release|x86.Build.0 = Release|Win32
+		{5588CE92-A936-4A03-BE69-A0FD7759A75A}.Debug|x64.ActiveCfg = Debug|x64
+		{5588CE92-A936-4A03-BE69-A0FD7759A75A}.Debug|x64.Build.0 = Debug|x64
+		{5588CE92-A936-4A03-BE69-A0FD7759A75A}.Debug|x86.ActiveCfg = Debug|Win32
+		{5588CE92-A936-4A03-BE69-A0FD7759A75A}.Debug|x86.Build.0 = Debug|Win32
+		{5588CE92-A936-4A03-BE69-A0FD7759A75A}.Release|x64.ActiveCfg = Release|x64
+		{5588CE92-A936-4A03-BE69-A0FD7759A75A}.Release|x64.Build.0 = Release|x64
+		{5588CE92-A936-4A03-BE69-A0FD7759A75A}.Release|x86.ActiveCfg = Release|Win32
+		{5588CE92-A936-4A03-BE69-A0FD7759A75A}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
