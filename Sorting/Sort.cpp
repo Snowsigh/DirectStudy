@@ -1,54 +1,6 @@
 ﻿// Sorting.cpp : 이 파일에는 'main' 함수가 포함됩니다. 거기서 프로그램 실행이 시작되고 종료됩니다.
 //
 
-#include <iostream>
-
-class Node
-{
-public:
-	int IValue;
-	Node* pNext;
-
-private:
-
-};
-
-class StackSort
-{
-public:
-	Node* m_Head;
-	Node* m_Tail;
-
-	StackSort();
-	~StackSort();
-
-private:
-
-};
-
-StackSort::StackSort()
-{
-	m_Head = new Node;
-	m_Head->IValue = 0;
-	m_Head->pNext = nullptr;
-
-	m_Tail = new Node;
-	m_Tail->IValue = 0;
-	m_Tail->pNext = nullptr;
-
-}
-
-StackSort::~StackSort()
-{
-	for (Node* pNode = m_Head->pNext; pNode->pNext != m_Tail;)
-	{
-		Node* temp = pNode;
-		pNode = pNode->pNext;
-		delete temp;
-	}
-	delete m_Head;
-	delete m_Tail;
-}
 
 int main()
 {
