@@ -90,3 +90,31 @@ void S_List<T>::List_Show(T _Value)
 	std::cout << "\n";
 }
 
+template <typename T>
+class S_Queue
+{
+public:
+	void Queue_Show(T _Value);
+
+};
+template <typename T>
+void S_Queue<T>::Queue_Show(T _Value)
+{
+	std::queue<T> _queue;
+
+	_queue.push(_Value);
+
+	for (int i = 0; i < 10; i++)
+	{
+		_queue.push(i);
+	}
+	
+
+	int Max_Size = _queue.size();
+	for (int i = 0; i < Max_Size; i++)
+	{
+		std::cout << _queue.front() << " ";
+		_queue.pop();
+	}
+	std::cout << "\n";
+}

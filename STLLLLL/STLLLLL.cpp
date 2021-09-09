@@ -9,5 +9,6 @@ int main()
 	Stc1.Stack_Show(10.5);
 	S_List<int> list1;
 	list1.List_Show(22);
-
+	S_Queue<double> que1;
+	que1.Queue_Show(1.9);
 }
