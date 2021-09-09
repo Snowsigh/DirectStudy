@@ -1,27 +1,30 @@
 ﻿#include <iostream>
 
+template <typename T>
 class Node
 {
 public:
 	Node* p_Left;
 	Node* p_Right;
-	int Value;
+	T Value;
 	Node();
 	~Node();
 
 };
-Node::Node() : p_Left(nullptr), p_Right(nullptr), Value(NULL) {};
-Node::~Node() {};
+template <typename T>
+Node<T>::Node() : p_Left(nullptr), p_Right(nullptr), Value(NULL) {};
+template <typename T>
+Node<T>::~Node() {};
 
-
+template <typename T>
 class BinarySearchTree
 {
 public:
-	Node* p_Root;
+	Node<T>* p_Root;
 
-	void AddNode(int _Value);
-	void RemoveNode(int _Value);
-	bool SearchValue(int _Value);
+	void AddNode(T _Value);
+	void RemoveNode(T _Value);
+	bool SearchValue(T _Value);
 	void Show();
 
 
@@ -31,8 +34,8 @@ public:
 
 private:
 
-	Node* RemoveSystem(Node* pNode, int _Value);
-	Node* SearchNode(Node* pNode)
+	Node<T>* RemoveSystem(Node<T>* pNode, T _Value);
+	Node<T>* SearchNode(Node<T>* pNode)
 	{
 		if (pNode == NULL) return NULL;
 		while (pNode->p_Right != NULL)
@@ -41,7 +44,7 @@ private:
 		}
 		return pNode;
 	}
-	void Inorder(Node* pNode)
+	void Inorder(Node<T>* pNode)
 	{
 		if (pNode != nullptr)
 		{
@@ -52,12 +55,14 @@ private:
 	}
 
 };
-void BinarySearchTree::Show()
+template <typename T>
+void BinarySearchTree<T>::Show()
 {
 	Inorder(p_Root);
 	std::cout << "\n";
 }
-Node* BinarySearchTree::RemoveSystem(Node* pNode, int _Value)
+template <typename T>
+Node<T>* BinarySearchTree<T>::RemoveSystem(Node<T>* pNode, T _Value)
 {
 	if (pNode == nullptr) return pNode;
 	else if (pNode->Value > _Value)
@@ -66,7 +71,7 @@ Node* BinarySearchTree::RemoveSystem(Node* pNode, int _Value)
 		pNode->p_Right = RemoveSystem(pNode->p_Right, _Value);
 	else
 	{
-		Node* ptr = pNode;
+		Node<T>* ptr = pNode;
 		if (pNode->p_Right == nullptr && pNode->p_Left == nullptr)
 		{
 			delete pNode;
@@ -92,10 +97,11 @@ Node* BinarySearchTree::RemoveSystem(Node* pNode, int _Value)
 	}
 	return pNode;
 }
-bool BinarySearchTree::SearchValue(int _Value)
+template <typename T>
+bool BinarySearchTree<T>::SearchValue(T _Value)
 {
-	Node* ptr = p_Root;
-	Node* Temp = nullptr;
+	Node<T>* ptr = p_Root;
+	Node<T>* Temp = nullptr;
 
 	while (ptr != nullptr)
 	{
@@ -116,16 +122,18 @@ bool BinarySearchTree::SearchValue(int _Value)
 	std::cout << "Not Find\n";
 	return false;
 }
-void BinarySearchTree::RemoveNode(int _Value)
+template <typename T>
+void BinarySearchTree<T>::RemoveNode(T _Value)
 {
-	Node* ptr = p_Root;
+	Node<T>* ptr = p_Root;
 	RemoveSystem(ptr, _Value);
 
 }
-void BinarySearchTree::AddNode(int _Value)
+template <typename T>
+void BinarySearchTree<T>::AddNode(T _Value)
 {
-	Node* node = new Node;
-	Node* temp = nullptr;
+	Node<T>* node = new Node<T>;
+	Node<T>* temp = nullptr;
 
 	node->Value = _Value;
 
@@ -135,7 +143,7 @@ void BinarySearchTree::AddNode(int _Value)
 	}
 	else
 	{
-		Node* ptr = p_Root;
+		Node<T>* ptr = p_Root;
 
 		while (ptr != nullptr)
 		{
@@ -164,7 +172,7 @@ void BinarySearchTree::AddNode(int _Value)
 }
 int main()
 {
-	BinarySearchTree* bst = new BinarySearchTree;
+	BinarySearchTree<int>* bst = new BinarySearchTree<int>;
 	for (int i = 0; i < 10; i++)
 	{
 		bst->AddNode(i);
