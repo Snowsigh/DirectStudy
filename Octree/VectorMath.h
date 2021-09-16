@@ -1,7 +1,8 @@
 #pragma once
 #include <iostream>
 #include <cmath>
-
+#include <ctime>
+#include <cstdlib>
 
 
 class TVector
@@ -9,13 +10,13 @@ class TVector
 public:
 	float x;
 	float y;
-	float z;
+
 	TVector();
 	~TVector();
 
 private:
 };
-TVector::TVector() : x(0), y(0), z(0) {}
+TVector::TVector() : x(0), y(0) {}
 TVector::~TVector() {}
 
 
@@ -37,6 +38,12 @@ float TLogic::AngleBetween(TVector p1, TVector p2)
 }
 TVector TLogic::SetVector(float _x, float _y)
 {
+	if (_x == 0 && _y == 0)
+	{
+		srand(static_cast<int>(time(NULL)));
+		_x = static_cast<float>(rand() % 100);
+		_y = static_cast<float>(rand() % 100);
+	}
 	TVector Rat;
 	Rat.x = _x;
 	Rat.y = _y;
