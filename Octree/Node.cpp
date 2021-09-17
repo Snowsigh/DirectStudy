@@ -1,7 +1,7 @@
 #pragma once
 #include "Node.h"
 
-TNode::TNode(TVector _vPivot, TVector _vSize)
+TNode::TNode(TVector _vPivot, TVector _vSize) // Init Node
 {
 	for (int iChild = 0; iChild < 8; iChild++)
 	{

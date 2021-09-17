@@ -1,23 +1,19 @@
 ﻿#pragma once
 #include "Octree.h"
-TOctree::TOctree()
-{
 
-	m_pRootNode = nullptr;
-}
+TOctree::TOctree() { m_pRootNode = nullptr; m_pPlayer = nullptr; m_pLastNode = nullptr; }
+TOctree::~TOctree(){}
 
-TOctree::~TOctree()
-{
-}
+
 void TOctree::Frame(float _time)
 {
 	static float fDirection = 1.0f;
 	if (m_pPlayer->m_vPos.x > 100.0f || m_pPlayer->m_vPos.x < 0.0f)
 	{
-		fDirection *= 1.0f;
+		fDirection *= -1.0f;
 	}
-	m_pPlayer->m_vVelocity.x = 10.0f * fDirection;
-	m_pPlayer->m_vVelocity.y = 0.0f;
+	m_pPlayer->m_vVelocity.y = 10.0f * fDirection;
+	m_pPlayer->m_vVelocity.x = 5.0f * fDirection;
 	m_pPlayer->m_vPos += m_pPlayer->m_vVelocity * _time;
 
 	TVector vHalf = m_pPlayer->m_tBox.vSize / 2.0f;
@@ -29,16 +25,18 @@ void TOctree::Frame(float _time)
 	if (pFind != nullptr)
 	{
 		std::cout << pFind->m_iNodeCount << " ";
-		std::cout << "( " << m_pPlayer->m_vPos.x << "," << m_pPlayer->m_vPos.y << "," << m_pPlayer->m_vPos.z << " )";
+		//std::cout << "( " << (int)m_pPlayer->m_vPos.x << "," << m_pPlayer->m_vPos.y << "," << m_pPlayer->m_vPos.z << " )"; 좌표값 출력
 	}
 }
+
+
 bool TOctree::Init(float _x, float _y, float _z)
 {
 	m_pPlayer = new TObject();
 	m_vSize = { _x,_y,_z };
 	m_pRootNode = SetNode(nullptr, TVector(0, 0, 0), m_vSize);
 	SetUpNode(m_pRootNode);
-
+	AddObject(m_pPlayer);
 	return true;
 }
 
@@ -55,6 +53,7 @@ TNode* TOctree::SetNode(TNode* _Parent, TVector _vPivot, TVector _vSize)
 	g_NewNodecount++;
 	return pNode;
 }
+
 bool TOctree::SetUpNode(TNode* _pNode)
 {
 	if (_pNode->m_TBox.vSize.x >= 30.0f && _pNode->m_TBox.vSize.y >= 30.0f && _pNode->m_TBox.vSize.z >= 30.0f)
@@ -87,6 +86,7 @@ bool TOctree::SetUpNode(TNode* _pNode)
 	}
 	return true;
 }
+
 bool TOctree::CheakObject(TNode* _pNode, TObject* _Obj)
 {
 	if (_pNode->m_TBox.vMax.x >= _Obj->m_vPos.x && _pNode->m_TBox.vMin.x <= _Obj->m_vPos.x && //맥시멈보다 작고 미니멈보다 클경우, 안에 들어와있다.
@@ -97,19 +97,38 @@ bool TOctree::CheakObject(TNode* _pNode, TObject* _Obj)
 	}
 	return false;
 }
+
+
 TNode* TOctree::FindNode(TNode* _pNode, TObject* _Obj)
 {
 	if (_pNode->m_pChildNode[0] != nullptr)
 	{
-		if (CheakObject(_pNode, _Obj))
+		for (int iChild = 0; iChild < 8; iChild++)
 		{
-			for (int iChild = 0; iChild < 8; iChild++)
+			if (CheakObject(_pNode->m_pChildNode[iChild], _Obj))
 			{
-				if (CheakObject(_pNode->m_pChildNode[iChild], _Obj))
-				{
-					 FindNode(_pNode->m_pChildNode[iChild], _Obj);
-				}
+				FindNode(_pNode->m_pChildNode[iChild], _Obj); //가장 잘게 쪼개진 노드영역에서 위치찾기
+				break;
 			}
+		}
+	}
+	
+
+	{
+		if (CheakObject(_pNode, _Obj)) // 존재하면 안으로
+		{
+			if (m_pQueue.empty())
+			{
+				m_pQueue.push(_pNode);
+				m_pLastNode = _pNode; //현재 위치 저장
+			}
+			else if(!CheakObject(m_pLastNode, _Obj)) // 마지막으로 있었던 노드에서 벗어났는가?
+			{
+				m_pQueue.pop();
+				m_pQueue.push(_pNode);
+				m_pLastNode = _pNode;
+			}
+			_pNode = m_pQueue.front();
 		}
 	}
 	return _pNode;

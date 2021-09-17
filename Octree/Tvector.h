@@ -1,8 +1,10 @@
 #pragma once
 #include <iostream>
 #include <vector>
+#include <queue>
 #include <map>
 
+//Vector Info
 class TVector
 {
 public:

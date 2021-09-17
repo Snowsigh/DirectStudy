@@ -1,16 +1,16 @@
 #pragma once
 #include "TObject.h"
 
-static int g_NewNodecount;
+static int g_NewNodecount; // Node Count
 
 class TNode
 {
 public:
 	
 	
-	int m_iNodeCount; // 몇번째 노드인지 체크
-	TBox m_TBox; // 노드의 영역
-	int m_iDepth; // 깊이, Leaf노드
+	int m_iNodeCount; // Node Numbering <- NewNodeCount
+	TBox m_TBox;      // Area
+	int m_iDepth; 
 	TNode* m_pParent; 
 	TNode* m_pChildNode[8]; 
 

@@ -2,7 +2,7 @@
 #include "TObject.h"
 
 
-TObject::TObject()
+TObject::TObject() : m_iNodeIndex(0) // Default Static Object
 {
 	m_vPos = { 0, 0, 0 };
 	
@@ -12,7 +12,7 @@ TObject::TObject()
 	m_tBox.vMin = { m_vPos.x - vHalf.x, m_vPos.y - vHalf.y, m_vPos.z - vHalf.z };
 	m_tBox.vMax = { m_vPos.x + vHalf.x, m_vPos.y + vHalf.y, m_vPos.z + vHalf.z };
 }
-TObject::TObject(TVector _Pos, TVector _vSize) // 정적 개체 생성
+TObject::TObject(TVector _Pos, TVector _vSize) : m_iNodeIndex(0) // Create Static Object
 {
 	m_vPos = _Pos;
 

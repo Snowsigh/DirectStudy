@@ -1,11 +1,11 @@
 #pragma once
 #include "Tvector.h"
 
-
+// Collision Info
 struct TBox
 {
-	TVector vMin; // 최솟값
-	TVector vMax; // 최대값
+	TVector vMin; 
+	TVector vMax; 
 	TVector vPivot;
 	TVector vCenter;
 	TVector vSize;
@@ -30,7 +30,7 @@ struct TBox
 };
 
 
-
+// Dynamic object Info
 class TObject
 {
 public:
