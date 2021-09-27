@@ -2,7 +2,7 @@
 #include "TObject.h"
 
 
-TObject::TObject() : m_iNodeIndex(0) // Default Static Object
+TObject::TObject() : m_iNodeIndex(0) // Default Object
 {
 	m_vPos = { 0, 0, 0 };
 	

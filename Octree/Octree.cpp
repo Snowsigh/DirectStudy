@@ -12,8 +12,8 @@ void TOctree::Frame(float _time)
 	{
 		fDirection *= -1.0f;
 	}
-	m_pPlayer->m_vVelocity.y = 10.0f * fDirection;
-	m_pPlayer->m_vVelocity.x = 5.0f * fDirection;
+	m_pPlayer->m_vVelocity.x = 10.0f * fDirection;
+	m_pPlayer->m_vVelocity.y = 5.0f * fDirection;
 	m_pPlayer->m_vPos += m_pPlayer->m_vVelocity * _time;
 
 	TVector vHalf = m_pPlayer->m_tBox.vSize / 2.0f;

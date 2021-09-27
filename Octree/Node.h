@@ -7,7 +7,6 @@ class TNode
 {
 public:
 	
-	
 	int m_iNodeCount; // Node Numbering <- NewNodeCount
 	TBox m_TBox;      // Area
 	int m_iDepth; 

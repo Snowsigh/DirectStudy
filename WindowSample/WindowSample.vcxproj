@@ -141,9 +141,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="KCore.h" />
+    <ClInclude Include="KDevice.h" />
     <ClInclude Include="KWindow.h" />
+    <ClInclude Include="Main.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="KCore.cpp" />
+    <ClCompile Include="KDevice.cpp" />
     <ClCompile Include="KWindow.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>

@@ -21,9 +21,9 @@ public:
 	bool AddObject(TObject* _Obj);
 	bool DeleteObject(TObject* _Obj);
 	void ClearNode();
-
-public:
 	void Frame(float _time);
+public:
+	
 	TOctree();
 	virtual ~TOctree();
 	
